@@ -17,9 +17,17 @@ import raylibpy
 import time
 import socket
 import threading
+import argparse
 from typing import Optional
 from enum import Enum
 
+def parse_arguments():
+    parser = argparse.ArgumentParser(description='Connect to a chat server.')
+    parser.add_argument('--host', type=str, default='localhost',
+                        help='Hostname or IP address of the chat server')
+    parser.add_argument('--port', type=int, default=1602,
+                        help='Port number of the chat server')
+    return parser.parse_args()
 class MsgType(Enum):
     ME = 1
     FRIEND = 2
@@ -67,7 +75,7 @@ class ChatNetworkHandler:
 
 
 class ChatClient:
-    def __init__(self, font="./Font.ttf", network_address="localhost", port=1602):
+    def __init__(self, network_address="localhost", port=1602):
 
         self.screen_width = 1210
         self.screen_height = 450
@@ -75,7 +83,7 @@ class ChatClient:
         raylibpy.init_window(self.screen_width, self.screen_height, "Simon's chat")
         raylibpy.set_target_fps(60)
 
-        self.font = raylibpy.load_font(font)
+        self.font = raylibpy.load_font("./Font.ttf")
         raylibpy.set_texture_filter(self.font.texture, raylibpy.TEXTURE_FILTER_TRILINEAR)
         self.font_size = self.font.base_size
         self.char_width = raylibpy.measure_text_ex(self.font, "A", self.font_size, 1)[0]
@@ -184,7 +192,8 @@ class ChatClient:
         raylibpy.close_window()
 
 if __name__ == "__main__":
-    client = ChatClient()
+    args = parse_arguments()
+    client = ChatClient(network_address=args.host, port=args.port)
     client.connect_to_server()
     client.run()
 

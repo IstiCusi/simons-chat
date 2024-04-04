@@ -16,6 +16,21 @@ multi-threading, laying the foundation for more complex networked applications w
 ### Client
 
 On the client side, the application is developed in Python, making use of `raylibpy` for the graphical user interface. This part of the project illustrates how Python applications can integrate with libraries to handle real-time graphical updates, user input, and network communication effectively. The application dynamically manages its dependencies, ensuring a smooth setup and execution process for the user.
+Start the client with:
+
+```bash
+./chat.py --host <host ip> --port <tcp port>
+```
+or with, implying the standard port 1602, 
+
+```bash
+./chat.py --host <host ip>
+```
+or, implying the standard port and localhost, with 
+
+```bash
+./chat.py
+```
 
 ## Key Concepts
 
