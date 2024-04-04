@@ -1,4 +1,4 @@
-# Simon's Chat clinet - A Very Simple and unsafe Chat Client
+# Simon's Chat client - A Very Simple and Unsafe Chat Client
 
 ## Overview
 
@@ -7,8 +7,8 @@ Additionally, this intentionally simplistic chat client will serve as a testing 
 
 ### Server
 
-The server is inspired by "Network Programming with C" by Van Winkel, highlighting the essentials of socket programming in C. It's a straightforward implementation aimed at demonstrating how to handle client connections, data transmission, and concurrency through multi-threading, laying the foundation for more complex networked applications with
-no transmission checks on completness.
+The used server used by the client is inspired by "Network Programming with C" by Van Winkel, highlighting the essentials of socket programming in C. It's a straightforward implementation aimed at demonstrating how to handle client connections, data transmission, and concurrency through multi-threading, laying the foundation for more complex networked applications with
+no transmission checks on completeness.
 
 ### Client
 
@@ -35,6 +35,6 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## Acknowledgments
 
-- Server inspired by "Network Programming with C" by Van Winkels.
+- Server inspired by "Network Programming with C" by Van Winkel.
 - FiraCode font used for enhancing the chat interface's readability.
 
