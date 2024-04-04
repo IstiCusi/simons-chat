@@ -5,6 +5,8 @@
 This project showcases a simple chat application designed to illustrate core concepts of network programming, concurrency, and design patterns within a minimalistic framework. It serves as an educational tool for those looking to understand the basics of creating networked applications with C and Python.
 Additionally, this intentionally simplistic chat client will serve as a testing ground for exploring various exploit techniques in the future, enhancing understanding of security vulnerabilities within networked applications.
 
+Simon's Chat, born from my son Simon's deepest desire, is not just any chat client. It's a bespoke haven for him and his buddies, untouched by the commercial fray. Crafted with a dash of humor, it's as independent as it gets, with one tiny, laughable catch: it's encryption-free, so dad can always tune in to the latest gossip—family bonding at its finest, or as we like to call it, 'open-source parenting'.
+
 ### Server
 
 The used server used by the client is inspired by "Network Programming with C" by Van Winkel, highlighting the essentials of socket programming in C.
