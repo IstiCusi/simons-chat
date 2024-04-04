@@ -56,3 +56,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Server inspired by "Network Programming with C" by Van Winkel.
 - FiraCode font used for enhancing the chat interface's readability.
 
+## TODOs
+
+- Add client names
+- Add recieve confirmation by header and markers
+- Add file transfer and /event (ringing at the reciever)
+- Add encryption
