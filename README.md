@@ -62,3 +62,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Add recieve confirmation by header and markers
 - Add file transfer and /event (ringing at the reciever)
 - Add encryption
+- Add windows support
+- Add chat log
+- Add better keyboard handling
+- Add piping possibility for streaming (e.g. music)
+- Add sound
+- Extend to hamlib capabilities -- transfer by radios
