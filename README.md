@@ -1,4 +1,4 @@
-# Simon's Chat client - A Very Simple and Unsafe Chat Client
+# Simon's Chat Client - A Very Simple and Unsafe Chat Client
 
 ## Overview
 
