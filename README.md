@@ -67,4 +67,13 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Add better keyboard handling
 - Add piping possibility for streaming (e.g. music)
 - Add sound
-- Extend to hamlib capabilities -- transfer by radios
+- Extend to hamlib capabilities -- transfer by radios AX.25
+- Add password hash
+- Add Desktop size and window size independent GUI / all elements scale
+- Add Protocol Manager for different server formats
+- Add configuration file loading.
+- Add picture icons / video icon / sound icon to text queue
+- Add direwolf binding 
+- Translate client prototype to C++
+- Overlay mode for gaming
+- scripting (lua ?)
