@@ -7,8 +7,9 @@ Additionally, this intentionally simplistic chat client will serve as a testing 
 
 ### Server
 
-The used server used by the client is inspired by "Network Programming with C" by Van Winkel, highlighting the essentials of socket programming in C. It's a straightforward implementation aimed at demonstrating how to handle client connections, data transmission, and concurrency through multi-threading, laying the foundation for more complex networked applications with
-no transmission checks on completeness.
+The used server used by the client is inspired by "Network Programming with C" by Van Winkel, highlighting the essentials of socket programming in C.
+It's a straightforward implementation aimed at demonstrating how to handle client connections, data transmission, and concurrency through
+multi-threading, laying the foundation for more complex networked applications with transmission checks on completeness and safety.
 
 ### Client
 
