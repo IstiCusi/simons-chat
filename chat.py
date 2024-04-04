@@ -9,7 +9,7 @@ installed = {pkg.key for pkg in pkg_resources.working_set}
 missing = required - installed
 
 if missing:
-    print("The following packes will be installed now", missing)
+    print("The following packages will be installed now", missing)
     python = sys.executable
     subprocess.check_call([python, '-m', 'pip', 'install', *missing], stdout=subprocess.DEVNULL)
 
