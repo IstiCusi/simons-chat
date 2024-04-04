@@ -58,6 +58,9 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## TODOs
 
+- Add docstrings
+- UML/SysML Produce Wiki with activity, class diagrams etc
+- Scoping
 - Add client names
 - Add recieve confirmation by header and markers
 - Add file transfer and /event (ringing at the reciever)
