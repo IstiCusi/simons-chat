@@ -58,6 +58,13 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## TODOs
 
+- Unit testing soon
+- Correct connection checking
+- UDP data transfer class as proxy 
+- TCP data transfer class as proxy 
+- Factory to produce such proxies
+- Better message handling
+- Packaging of executables for windows and linux
 - Add docstrings
 - UML/SysML Produce Wiki with activity, class diagrams etc
 - Scoping
