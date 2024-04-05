@@ -3,6 +3,20 @@
 import subprocess
 import pkg_resources
 import sys
+import os
+
+
+# python_version = sys.version_info
+# python_major = python_version.major
+# python_minor = python_version.minor
+
+# venv_dir = os.path.expanduser(f'~/.chat/venv/py{python_major}.{python_minor}')
+
+# if not os.path.exists(venv_dir):
+#     subprocess.check_call([sys.executable, '-m', 'venv', venv_dir])
+
+# venv_lib = os.path.join(venv_dir, 'lib', f'python{python_major}.{python_minor}', 'site-packages')
+# sys.path.append(venv_lib)
 
 required = {'raylib-py'} 
 installed = {pkg.key for pkg in pkg_resources.working_set}
@@ -20,6 +34,9 @@ import threading
 import argparse
 from typing import Optional
 from enum import Enum
+import re
+
+raylibpy.set_trace_log_level(raylibpy.LOG_NONE)
 
 def parse_arguments():
     parser = argparse.ArgumentParser(description='Connect to a chat server.')
@@ -28,6 +45,8 @@ def parse_arguments():
     parser.add_argument('--port', type=int, default=1602,
                         help='Port number of the chat server')
     return parser.parse_args()
+
+
 class MsgType(Enum):
     ME = 1
     FRIEND = 2
@@ -39,11 +58,22 @@ class ChatNetworkHandler:
         self.port = port
         self.socket: Optional[socket.socket] = None
         self.observers = []
+        self.connected = False
 
     def connect(self):
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.socket.connect((self.host, self.port))
-        threading.Thread(target=self.receive_message_loop, daemon=True).start()
+        try:
+            self.socket.connect((self.host, self.port))
+            threading.Thread(target=self.receive_message_loop, daemon=True).start()
+            self.connected = True
+        except:
+            print("Server could not be reached -- please use /connect in GUI")
+            self.connected = False
+
+
+    def is_connected(self):
+        assert self.socket is not None, "Socket not initialized"
+        return self.connected
 
     def send_message(self, message):
         assert self.socket is not None, "Socket not initialized"
@@ -151,6 +181,7 @@ class ChatClient:
             self.last_blink_time = time.time()
 
     def draw(self):
+
         raylibpy.begin_drawing()
 
         raylibpy.clear_background(raylibpy.RAYWHITE)
@@ -176,10 +207,50 @@ class ChatClient:
 
     def connect_to_server(self):
         self.network_handler.connect()
+        if not self.network_handler.is_connected():
+            message = "*** Not connected ***"
+        else:
+            message = "*** Connected  ***"
+        self.messages.append([message, MsgType.ME])
+
+    def parse_command(self, message):
+        connect_pattern = r'/connect\s+(\S+:\d+)'
+        beep_pattern = r'/beep'
+
+        connect_match = re.match(connect_pattern, message)
+        beep_match = re.match(beep_pattern, message)
+
+        if connect_match:
+            command = 'connect'
+            argument = connect_match.group(1)
+        elif beep_match:
+            command = 'beep'
+            argument = None 
+        else:
+            command = None
+            argument = None
+
+        return command, argument
+
+    def handle_commands(self, tokens):
+        command = tokens[0]
+        if command == 'connect':
+            print(tokens[0])
+            print(tokens[1])
+        elif command == 'beep':
+            pass
 
     def send_message(self, message):
-        self.network_handler.send_message(message)
-        self.messages.append([ message, MsgType.ME ])
+        tokens = self.parse_command(message)
+        if tokens and tokens[0]: 
+            self.handle_commands(tokens)
+            message = "*** Executed ***"
+        elif self.network_handler.is_connected():
+            self.network_handler.send_message(message)
+        else:
+            message = "*** Not connected ***"
+
+        self.messages.append([message, MsgType.ME])
 
     def run(self):
         while not raylibpy.window_should_close():
@@ -192,6 +263,7 @@ class ChatClient:
         raylibpy.close_window()
 
 if __name__ == "__main__":
+
     args = parse_arguments()
     client = ChatClient(network_address=args.host, port=args.port)
     client.connect_to_server()
